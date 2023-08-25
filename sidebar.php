@@ -4,10 +4,16 @@
 
         <div class="sidebar-item search-form">
             <h3 class="sidebar-title">Search</h3>
-            <form action="" class="mt-3">
-                <input type="text">
+
+            <form action="http://localhost/wordpress/" method="get" class="mt-3">
+                <input type="text" name="s" value="<?php the_search_query(); ?>">
                 <button type="submit"><i class="bi bi-search"></i></button>
             </form>
+            <?php
+            global $wp_query;
+            $total_results = $wp_query->found_posts;
+            ?>
+
         </div><!-- End sidebar search formn-->
         <?php dynamic_sidebar('blog_category'); ?>
 

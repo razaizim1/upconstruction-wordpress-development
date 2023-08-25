@@ -2,8 +2,109 @@
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
-    add_theme_support('post-thumbnails');
+    // Register Menu
+    register_nav_menus(
+        array(
+            'header_menu' => 'Header Menu',
+            'footer_menu' => 'Footer Menu'
+        )
+    );
+
+
+    // Post Type of Services
+    register_post_type(
+        'services',
+        array(
+
+            'labels' => array(
+                'name' => 'Services',
+                'add_new' => 'Add New Service',
+                'add_new_item' => 'Add New Service'
+            ),
+
+            'public' => true,
+            'menu_icon' => 'dashicons-chart-pie'
+        )
+    );
+
+    // Post Type of Alt Services
+    register_post_type(
+        'alt_services',
+        array(
+
+            'labels' => array(
+                'name' => 'Alt Services',
+                'add_new' => 'Add New Service',
+                'add_new_item' => 'Add New Service'
+            ),
+
+            'public' => true,
+            'menu_icon' => 'dashicons-schedule'
+        )
+    );
+
+
+    // Post Type of Our Project
+    register_post_type(
+        'our_projects',
+        array(
+
+            'labels' => array(
+                'name' => 'Porjects',
+                'add_new' => 'Add New Projects',
+                'add_new_item' => 'Add New Projects',
+                'edit_item' => 'Edit Project',
+                'new_item' => 'New Project',
+                'remove_featured_image' => 'Remove Project Image',
+                'featured_image' => 'Project Image',
+                'set_featured_image' => 'Set Project Image'
+            ),
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'public' => true,
+            'menu_icon' => 'dashicons-align-right'
+        )
+    );
+
+    // Register Taxonomy For Our Projects
+    register_taxonomy(
+        'projects_filter',
+        'our_projects',
+        array(
+            'labels' => array(
+                'name' => 'Project Filters',
+                'singular_name' => 'Filter',
+                'search_name' => 'Search Filter',
+                'popular_items' => 'Popular Filters',
+                'all_items' => 'All Filters',
+                'parent_item' => 'Parent Filter',
+                'add_new_item' => 'Add New Filter',
+                'new_item_name' => 'New Filter',
+                'not_found' => 'Filter not found'
+            ),
+            'hierarchical' => true
+        )
+    );
+
+    // Post Type of Our Project
+    register_post_type(
+        'testimonials',
+        array(
+
+            'labels' => array(
+                'name' => 'Testimonials',
+                'add_new' => 'Add New Testimonial',
+                'add_new_item' => 'Add New Testimonial',
+                'edit_item' => 'Edit Testimonial',
+                'new_item' => 'New Testimonial',
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-testimonial'
+        )
+    );
+
 });
+
+
 
 function category_widget()
 {
@@ -18,37 +119,26 @@ function category_widget()
             'after_widget' => '</div>'
         )
     );
+    register_sidebar(
+        array(
+            'id' => 'footer_menus',
+            'name' => 'Footer Menus',
+            'description' => 'This is footer Menus',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>',
+            'before_widget' => '<div class="col-lg-2 col-md-3 footer-links">',
+            'after_widget' => '</div>',
+
+        ),
+    );
 }
 add_action('widgets_init', 'category_widget');
 
-set_post_thumbnail_size(200, 170, true); // Sets the Post Main Thumbnails 
-add_image_size('delicious-recent-thumbnails', 55, 55, true); // Sets Recent Posts Thumbnails 
+// Footer Menu
 
-?>
-<ul>
-    <?php
-    function delicious_recent_posts()
-    {
-        $del_recent_posts = new WP_Query();
-        $del_recent_posts->query('showposts=3');
-        while ($del_recent_posts->have_posts()):
-            $del_recent_posts->the_post(); ?>
-            <li>
-                <a href="<?php esc_url(the_permalink()); ?>">
-                    <?php the_post_thumbnail('delicious-recent-thumbnails'); ?>
-                </a>
-                <h4>
-                    <a href="<?php esc_url(the_permalink()); ?>">
-                        <?php esc_html(the_title()); ?>
-                    </a>
-                </h4>
-            </li>
-        <?php endwhile;
-        wp_reset_postdata();
-    }
-    ?>
-</ul>
-<?php
+
+
+
 
 //Comment Field Order
 add_filter('comment_form_fields', 'mo_comment_fields_custom_order');
@@ -87,6 +177,111 @@ if (class_exists('CSF')) {
         array(
             'menu_title' => 'Theme Options',
             'menu_slug' => 'my-framework',
+        )
+    );
+
+
+    //Custom Section for Search Page
+    CSF::createSection(
+        $prefix,
+        array(
+            'title' => 'Header Options',
+            'fields' => array(
+
+                // A text field
+                array(
+                    'id' => 'header_logo',
+                    'type' => 'text',
+                    'title' => 'Logo Text',
+                    'default' => 'UpConstruction'
+                ),
+
+            )
+        )
+    );
+
+    //Custom Field for Footer
+    CSF::createSection(
+        $prefix,
+        array(
+            'title' => 'Footer Options',
+            'fields' => array(
+
+                // Footer Title
+                array(
+                    'id' => 'footer_logo',
+                    'type' => 'text',
+                    'title' => 'Footer Logo',
+                    'default' => 'UPCONSTRUCTION'
+                ),
+                // Footer Address
+                array(
+                    'id' => 'footer_address',
+                    'type' => 'text',
+                    'title' => 'Footer Address',
+                    'default' => 'A108 Adam Street NY 535022 USA'
+                ),
+                // Footer Contacts info email and phone number
+                array(
+                    'id' => 'footer_contact',
+                    'type' => 'repeater',
+                    'title' => 'Contact Info',
+                    'fields' => array(
+                        array(
+                            'id' => 'contact_name',
+                            'type' => 'text',
+                            'title' => 'Contact Name',
+                            'default' => 'Phone'
+                        ),
+                        array(
+                            'id' => 'contact_info',
+                            'type' => 'text',
+                            'title' => 'Contact Info',
+                            'default' => '+880 179294 5956'
+                        ),
+                    )
+                ),
+                // Footer Social Media
+                array(
+                    'id' => 'socials',
+                    'type' => 'repeater',
+                    'title' => 'Socials',
+                    'fields' => array(
+                        array(
+                            'id' => 'social_link',
+                            'type' => 'text',
+                            'title' => 'Social Link',
+                            'default' => 'https://www.facebook.com/razai-zim-100063912362370'
+                        ),
+                        array(
+                            'id' => 'social_icon',
+                            'type' => 'text',
+                            'title' => 'Social Icon',
+                            'default' => 'bi bi-facebook'
+                        )
+                    )
+                )
+
+            )
+        )
+    );
+
+    //Custom Section for Search Page
+    CSF::createSection(
+        $prefix,
+        array(
+            'title' => 'Search Page Title',
+            'fields' => array(
+
+                // A text field
+                array(
+                    'id' => 'search_title',
+                    'type' => 'text',
+                    'title' => 'Page Title',
+                    'default' => 'Search'
+                ),
+
+            )
         )
     );
 
@@ -149,6 +344,12 @@ if (class_exists('CSF')) {
     );
 
 }
+
+
+
+
+
+
 
 
 ?>

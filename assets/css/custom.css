@@ -67,12 +67,6 @@
   color: rgba(82, 86, 94, 0.8);
 }
 
-/* .cat-item {
-  font-size: 16px;
-  color: rgba(54, 77, 89, 0.4);
-  font-weight: 500;
-} */
-
 .widget_categories {
   margin-top: 40px;
 }
@@ -140,5 +134,19 @@
 }
 
 #shadow-host-companion {
-  padding: 0px ;
+  padding: 0px;
+}
+
+#searchform div {
+  display: flex;
+}
+
+.breadcrumbs p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wpcf7-spinner {
+  margin: auto !important;
 }

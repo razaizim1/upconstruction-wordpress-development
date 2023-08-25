@@ -28,7 +28,9 @@ get_header(); ?>
             the_post(); ?>
             <article class="blog-details">
               <div class="post-img">
-                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+              <?php $post_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                ?>
+                <img src="<?php echo $post_image_url; ?>" alt="" class="img-fluid">
               </div>
               <h2 class="title">
                 <?php the_title(); ?>
@@ -140,7 +142,7 @@ get_header(); ?>
           </div><!-- End blog comments -->
 
         </div>
-            <?php get_sidebar() ; ?>
+        <?php get_sidebar(); ?>
       </div>
 
     </div>

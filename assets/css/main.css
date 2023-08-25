@@ -319,11 +319,11 @@ section {
 # Desktop Navigation
 --------------------------------------------------------------*/
 @media (min-width: 1280px) {
-  .navbar {
+  .navbar .menu {
     padding: 0;
   }
 
-  .navbar ul {
+  .menu ul {
     margin: 0;
     padding: 0;
     display: flex;
@@ -331,17 +331,17 @@ section {
     align-items: center;
   }
 
-  .navbar li {
+  .navbar .menu li {
     position: relative;
   }
 
-  .navbar > ul > li {
+  .navbar .menu > ul > li {
     white-space: nowrap;
     padding: 10px 0 10px 28px;
   }
 
-  .navbar a,
-  .navbar a:focus {
+  .navbar .menu a,
+  .navbar .menu a:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -356,14 +356,14 @@ section {
     position: relative;
   }
 
-  .navbar a i,
-  .navbar a:focus i {
+  .navbar .menu a i,
+  .navbar .menu a:focus i {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
   }
 
-  .navbar > ul > li > a:before {
+  .navbar .menu > ul > li > a:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -376,21 +376,21 @@ section {
     transition: all 0.3s ease-in-out 0s;
   }
 
-  .navbar a:hover:before,
-  .navbar li:hover > a:before,
-  .navbar .active:before {
+  .navbar .menu a:hover:before,
+  .navbar .menu li:hover > a:before,
+  .navbar .menu .active:before {
     visibility: visible;
     width: 100%;
   }
 
-  .navbar a:hover,
-  .navbar .active,
-  .navbar .active:focus,
-  .navbar li:hover > a {
+  .navbar .menu a:hover,
+  .navbar .menu .active,
+  .navbar .menu .active:focus,
+  .navbar .menu li:hover > a {
     color: #fff;
   }
 
-  .navbar .dropdown ul {
+  .navbar .menu .dropdown ul {
     display: block;
     position: absolute;
     left: 28px;
@@ -405,11 +405,11 @@ section {
     transition: 0.3s;
   }
 
-  .navbar .dropdown ul li {
+  .navbar .menu .dropdown ul li {
     min-width: 200px;
   }
 
-  .navbar .dropdown ul a {
+  .navbar .menu .dropdown ul a {
     padding: 10px 20px;
     font-size: 15px;
     text-transform: none;
@@ -417,29 +417,29 @@ section {
     font-weight: 400;
   }
 
-  .navbar .dropdown ul a i {
+  .navbar .menu .dropdown ul a i {
     font-size: 12px;
   }
 
-  .navbar .dropdown ul a:hover,
-  .navbar .dropdown ul .active:hover,
-  .navbar .dropdown ul li:hover > a {
+  .navbar .menu .dropdown ul a:hover,
+  .navbar .menu .dropdown ul .active:hover,
+  .navbar .menu .dropdown ul li:hover > a {
     color: var(--color-primary);
   }
 
-  .navbar .dropdown:hover > ul {
+  .navbar .menu .dropdown:hover > ul {
     opacity: 1;
     top: 100%;
     visibility: visible;
   }
 
-  .navbar .dropdown .dropdown ul {
+  .navbar .menu .dropdown .dropdown ul {
     top: 0;
     left: calc(100% - 30px);
     visibility: hidden;
   }
 
-  .navbar .dropdown .dropdown:hover > ul {
+  .navbar .menu .dropdown .dropdown:hover > ul {
     opacity: 1;
     top: 0;
     left: 100%;
@@ -448,11 +448,11 @@ section {
 }
 
 @media (min-width: 1280px) and (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
+  .navbar .menu .dropdown .dropdown ul {
     left: -90%;
   }
 
-  .navbar .dropdown .dropdown:hover > ul {
+  .navbar .menu .dropdown .dropdown:hover > ul {
     left: -100%;
   }
 }
@@ -468,7 +468,7 @@ section {
 # Mobile Navigation
 --------------------------------------------------------------*/
 @media (max-width: 1279px) {
-  .navbar {
+  .navbar .menu {
     position: fixed;
     top: 0;
     right: -100%;
@@ -479,7 +479,7 @@ section {
     z-index: 9997;
   }
 
-  .navbar ul {
+  .navbar .menu ul {
     position: absolute;
     inset: 0;
     padding: 50px 0 10px 0;
@@ -490,8 +490,8 @@ section {
     z-index: 9998;
   }
 
-  .navbar a,
-  .navbar a:focus {
+  .navbar .menu a,
+  .navbar .menu a:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -505,22 +505,22 @@ section {
     transition: 0.3s;
   }
 
-  .navbar a i,
-  .navbar a:focus i {
+  .navbar .menu a i,
+  .navbar .menu a:focus i {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
   }
 
-  .navbar a:hover,
-  .navbar .active,
-  .navbar .active:focus,
-  .navbar li:hover > a {
+  .navbar .menu a:hover,
+  .navbar .menu .active,
+  .navbar .menu .active:focus,
+  .navbar .menu li:hover > a {
     color: #fff;
   }
 
-  .navbar .dropdown ul,
-  .navbar .dropdown .dropdown ul {
+  .navbar .menu .dropdown ul,
+  .navbar .menu .dropdown .dropdown ul {
     position: static;
     display: none;
     padding: 10px 0;
@@ -529,8 +529,8 @@ section {
     border: 1px solid #222428;
   }
 
-  .navbar .dropdown > .dropdown-active,
-  .navbar .dropdown .dropdown > .dropdown-active {
+  .navbar .menu .dropdown > .dropdown-active,
+  .navbar .menu .dropdown .dropdown > .dropdown-active {
     display: block;
   }
 
@@ -605,10 +605,18 @@ section {
   font-size: 14px;
 }
 
-.get-started .php-email-form {
+.form-heading {
+  background: #fff;
+  padding: 30px;
+  padding-bottom: 0px;
+  margin-bottom: -20px;
+}
+
+.get-started .wpcf7-form {
   background: #fff;
   padding: 30px;
   height: 100%;
+  padding-top: 0px;
 }
 
 @media (max-width: 575px) {
@@ -617,19 +625,19 @@ section {
   }
 }
 
-.get-started .php-email-form h3 {
+.form-heading h3 {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.get-started .php-email-form p {
+.form-heading p {
   font-size: 14px;
   margin-bottom: 20px;
 }
 
-.get-started .php-email-form .error-message {
+/* .get-started .php-email-form .error-message {
   display: none;
   color: #fff;
   background: #df1529;
@@ -668,30 +676,30 @@ section {
   border-top-color: #fff;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
-}
+} */
 
-.get-started .php-email-form input,
-.get-started .php-email-form textarea {
+.get-started .wpcf7-form input,
+.get-started .wpcf7-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
   border-radius: 0;
 }
 
-.get-started .php-email-form input:focus,
-.get-started .php-email-form textarea:focus {
+.get-started .wpcf7-form input:focus,
+.get-started .wpcf7-form textarea:focus {
   border-color: var(--color-primary);
 }
 
-.get-started .php-email-form input {
+.get-started .wpcf7-form input {
   padding: 12px 15px;
 }
 
-.get-started .php-email-form textarea {
+.get-started .wpcf7-form textarea {
   padding: 12px 15px;
 }
 
-.get-started .php-email-form button[type="submit"] {
+.get-started .wpcf7-form input[type="submit"] {
   background: var(--color-primary);
   border: 0;
   padding: 10px 30px;
@@ -700,7 +708,7 @@ section {
   border-radius: 4px;
 }
 
-.get-started .php-email-form button[type="submit"]:hover {
+.get-started .wpcf7-form input[type="submit"]:hover {
   background: rgba(254, 185, 0, 0.8);
 }
 
@@ -2650,7 +2658,7 @@ section {
   color: var(--color-primary);
 }
 
-.footer .footer-content .footer-info p {
+.footer .footer-content .footer-info a {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;

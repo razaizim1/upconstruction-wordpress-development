@@ -13,7 +13,7 @@ get_header(); ?>
         <?php echo $options['blog_title']; ?>
       </h2>
       <ol>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="<?php echo home_url(); ?>">Home</a></li>
         <li>
           <?php echo $options['blog_title']; ?>
         </li>

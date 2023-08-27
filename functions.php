@@ -43,6 +43,26 @@ add_action('after_setup_theme', function () {
         )
     );
 
+    // Taxonomy of Alt Services
+    register_taxonomy(
+        'alt_service_category',
+        'alt_services',
+        array(
+            'labels' => array(
+                'name' => 'Alt Item Category',
+                'singular_name' => 'Category',
+                'search_name' => 'Search Category',
+                'popular_items' => 'Popular Categories',
+                'all_items' => 'All Categories',
+                'parent_item' => 'Parent Category',
+                'add_new_item' => 'Add New Category',
+                'new_item_name' => 'New Category',
+                'not_found' => 'Category not found'
+            ),
+            'hierarchical' => true
+        )
+    );
+
 
     // Post Type of Our Project
     register_post_type(
@@ -298,6 +318,25 @@ if (class_exists('CSF')) {
                     'type' => 'text',
                     'title' => 'Page Title',
                     'default' => 'Blog'
+                ),
+
+            )
+        )
+    );
+
+
+    // Create a section for Breadcrumb
+    CSF::createSection(
+        $prefix,
+        array(
+            'title' => 'Breadcrumb Background Image',
+            'fields' => array(
+
+                // A text field
+                array(
+                    'id' => 'breadcrumb_background_image',
+                    'type' => 'media',
+                    'title' => 'Breadcrumb Background Image'
                 ),
 
             )

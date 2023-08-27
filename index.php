@@ -6,7 +6,7 @@ get_header(); ?>
 
   <!-- ======= Breadcrumbs ======= -->
   <div class="breadcrumbs d-flex align-items-center"
-    style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/breadcrumbs-bg.jpg');">
+    style="background-image: url('<?php echo $options['breadcrumb_background_image']['url'] ;?>');">
     <div class="container position-relative d-flex flex-column align-items-center">
 
       <h2>

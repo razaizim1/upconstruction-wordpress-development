@@ -23,9 +23,6 @@ get_header(); ?>
     </div>
   </div>
   <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-    <!-- <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)">
-    </div> -->
     <?php
     while (have_rows('banner_background_images')):
       the_row(); ?>
@@ -49,7 +46,7 @@ get_header(); ?>
         <div class="col-lg-6 d-flex align-items-center">
           <div class="content">
             <h3>
-              <?php the_field('banner_title'); ?>
+              <?php the_field('get_started_title'); ?>
             </h3>
             <?php the_field('get_started_description'); ?>
           </div>
@@ -157,48 +154,12 @@ get_header(); ?>
   </section><!-- End Services Section -->
 
   <!-- ======= Alt Services Section ======= -->
-  <section id="alt-services" class="alt-services">
-    <div class="container">
-      <?php
-      $alt_services = new WP_Query(
-        array(
-          'post_type' => 'alt_services',
-          'posts_per_page' => -1
-        )
-      );
-      while ($alt_services->have_posts()):
-        $alt_services->the_post();
-        ?>
-        <div class="row justify-content-around gy-4">
-          <div class="col-lg-6 img-bg"
-            style="background-image: url(<?php echo get_field('alt_service_image')['url']; ?>);"></div>
-          <div class="col-lg-5 d-flex flex-column justify-content-center">
-            <h3>
-              <?php the_field('alt_service_title'); ?>
-            </h3>
-            <p>
-              <?php the_field('alt_service_description'); ?>
-            </p>
-            <?php while (have_rows('alt_service_items')):
-              the_row(); ?>
-              <div class="icon-box d-flex position-relative">
-                <i class="<?php the_sub_field('item_icon'); ?>"></i>
-                <div>
-                  <h4><a href="" class="stretched-link">
-                      <?php the_sub_field('item_title'); ?>
-                    </a></h4>
-                  <p>
-                    <?php the_sub_field('item_description'); ?>
-                  </p>
-                </div>
-              </div><!-- End Icon Box -->
-            <?php endwhile; ?>
-          </div>
-        </div>
-      <?php endwhile;
-      wp_reset_postdata(); ?>
-    </div>
-  </section><!-- End Alt Services Section -->
+  <?php
+  while (have_posts()):
+    the_post()
+    ; ?>
+    <?php the_content(); ?>
+  <?php endwhile; ?>
 
   <!-- ======= Features Section ======= -->
   <section id="features" class="features section-bg">

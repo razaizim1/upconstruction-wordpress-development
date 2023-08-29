@@ -19,11 +19,37 @@ add_action('after_setup_theme', function () {
             'labels' => array(
                 'name' => 'Services',
                 'add_new' => 'Add New Service',
-                'add_new_item' => 'Add New Service'
+                'add_new_item' => 'Add New Service',
+                'edit_item' => 'Edit Service',
+                'new_item' => 'New Service',
+                'remove_featured_image' => 'Remove Service Image',
+                'featured_image' => 'Service Image',
+                'set_featured_image' => 'Set Service Image'
             ),
-
+            'supports' => array('title', 'editor', 'thumbnail'),
             'public' => true,
             'menu_icon' => 'dashicons-chart-pie'
+        )
+    );
+
+    // Taxonomy of Services
+    register_taxonomy(
+        'services_category',
+        'services',
+        array(
+            'labels' => array(
+                'name' => 'Services Categoroy',
+                'singular_name' => 'Category',
+                'search_name' => 'Search Category',
+                'popular_items' => 'Popular Categories',
+                'all_items' => 'All Categories',
+                'parent_item' => 'Parent Category',
+                'add_new_item' => 'Add New Category',
+                'new_item_name' => 'New Category',
+                'not_found' => 'Category not found'
+            ),
+            'public' => true,
+            'hierarchical' => true
         )
     );
 
@@ -66,7 +92,7 @@ add_action('after_setup_theme', function () {
 
     // Post Type of Our Project
     register_post_type(
-        'our_projects',
+        'projects',
         array(
 
             'labels' => array(
@@ -88,7 +114,7 @@ add_action('after_setup_theme', function () {
     // Register Taxonomy For Our Projects
     register_taxonomy(
         'projects_filter',
-        'our_projects',
+        'projects',
         array(
             'labels' => array(
                 'name' => 'Project Filters',
@@ -381,6 +407,65 @@ if (class_exists('CSF')) {
             )
         )
     );
+
+    // Create a single project information
+    CSF::createSection(
+        $prefix,
+        array(
+            'title' => 'Project Information',
+            'fields' => array(
+
+                // A text field
+                array(
+                    'id' => 'client_company',
+                    'type' => 'text',
+                    'title' => 'Client',
+                    'default' => 'ASU Company'
+
+                ),
+                array(
+                    'id' => 'project_url',
+                    'type' => 'text',
+                    'title' => 'Project URL',
+                    'default' => 'www.github.com/razaizim1'
+                ),
+                array(
+                    'id' => 'visit_website',
+                    'type' => 'text',
+                    'title' => 'Visit Website',
+                    'default' => 'Visit Website'
+                )
+
+            )
+        )
+    );
+
+}
+
+add_action('acf/input/admin_head', 'my_acf_admin_head');
+
+function my_acf_admin_head()
+{
+
+    ?>
+    <script type="text/javascript">
+        (function ($) {
+
+            $(document).ready(function () {
+
+                $('.acf-field-64edbfdeb6ecd .acf-input').append($('#postdivrich'));
+
+            });
+
+        })(jQuery);    
+    </script>
+    <style type="text/css">
+        .acf-field #wp-content-editor-tools {
+            background: transparent;
+            padding-top: 5;
+        }
+    </style>
+    <?php
 
 }
 

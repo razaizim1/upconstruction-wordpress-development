@@ -247,7 +247,7 @@ get_header(); ?>
           <?php
           $projects = new WP_Query(
             array(
-              'post_type' => 'our_projects',
+              'post_type' => 'projects',
               'posts_per_page' => -1
             )
           );

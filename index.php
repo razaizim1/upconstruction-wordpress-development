@@ -6,14 +6,20 @@ get_header(); ?>
 
   <!-- ======= Breadcrumbs ======= -->
   <div class="breadcrumbs d-flex align-items-center"
-    style="background-image: url('<?php echo $options['breadcrumb_background_image']['url'] ;?>');">
+    style="background-image: url('<?php echo $options['breadcrumb_background_image']['url']; ?>');">
     <div class="container position-relative d-flex flex-column align-items-center">
 
       <h2>
         <?php echo $options['blog_title']; ?>
       </h2>
       <ol>
-        <li><a href="<?php echo home_url(); ?>">Home</a></li>
+        <li><a href="<?php echo home_url(); ?>"><?php
+          $page_ids = get_all_page_ids();
+          foreach ($page_ids as $id):
+            if (get_the_title($id) == 'Home') {
+              echo 'Home';
+            }
+          endforeach; ?></a></li>
         <li>
           <?php echo $options['blog_title']; ?>
         </li>
@@ -61,7 +67,10 @@ get_header(); ?>
                     foreach ($categories as $category):
                       ?>
                       <span class="ps-2">
-                        <a href="<?php echo get_category_link($category->term_id); ?>"><?php echo $category->name; ?></a>
+                        <a href="<?php
+                        // echo get_term_link($category);
+                        echo get_category_link($category->term_id);
+                        ?>"><?php echo $category->name; ?></a>
                       </span>
                     <?php endforeach; ?>
                   </div>

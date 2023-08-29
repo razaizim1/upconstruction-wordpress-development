@@ -15,7 +15,13 @@ get_header();
 
       <h2>Services</h2>
       <ol>
-        <li><a href="<?php home_url(); ?>">Home</a></li>
+        <li><a href="<?php echo home_url(); ?>"><?php
+          $page_ids = get_all_page_ids();
+          foreach ($page_ids as $id):
+            if (get_the_title($id) == 'Home') {
+              echo 'Home';
+            }
+          endforeach; ?></a></li>
         <li>Services</li>
       </ol>
 
@@ -50,7 +56,7 @@ get_header();
               <p>
                 <?php the_field('service_item_description'); ?>
               </p>
-              <a href="service-details.html" class="readmore stretched-link">
+              <a href="<?php the_permalink() ;?>" class="readmore stretched-link">
                 <?php the_field('service_item_button_text'); ?><i class="bi bi-arrow-right"></i>
               </a>
             </div>

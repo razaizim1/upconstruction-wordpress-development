@@ -1,45 +1,32 @@
-<?php
-$options = get_option('codestar');
-get_header(); ?>
+<?php get_header(); ?>
 
 <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center"
-        style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/breadcrumbs-bg.jpg');">
-        <div class="container position-relative d-flex flex-column align-items-center">
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-            <h2>
-                <?php echo $options['blog_title']; ?>
-            </h2>
-            <ol>
-                <li><a href="<?php echo home_url(); ?>">Home</a></li>
-                <li>
-                    <?php echo $options['blog_title']; ?>
-                </li>
-            </ol>
+      <h2>Sample Inner Page</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Sample Inner Page</li>
+      </ol>
 
-        </div>
     </div>
-    <!-- End Breadcrumbs -->
+  </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="row gy-4 posts-list">
+  <section class="sample-page">
+    <?php while (have_posts()):
+      the_post(); ?>
+      <div class="container">
 
-                <?php
-                while (have_posts()):
-                    the_post();
-                    ; ?>
-                    <?php the_content(); ?>
-                <?php endwhile; ?>
-                <!-- End post list item -->
+        <p>
+          You can duplicate this sample page and create any number of inner pages you like!
+        </p>
 
-            </div><!-- End blog posts list -->
-
-        </div>
-    </section><!-- End Blog Section -->
+      </div>
+    <?php endwhile; ?>
+  </section>
 
 </main><!-- End #main -->
 

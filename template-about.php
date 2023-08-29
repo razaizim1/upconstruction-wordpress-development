@@ -8,12 +8,19 @@ get_header(); ?>
 <main id="main">
 
   <!-- ======= Breadcrumbs ======= -->
-  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?php echo $options['breadcrumb_background_image']['url'] ;?>');">
+  <div class="breadcrumbs d-flex align-items-center"
+    style="background-image: url('<?php echo $options['breadcrumb_background_image']['url']; ?>');">
     <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
       <h2>About</h2>
       <ol>
-        <li><a href="<?php echo home_url(); ?>">Home</a></li>
+        <li><a href="<?php echo home_url(); ?>"><?php
+           $page_ids = get_all_page_ids();
+           foreach ($page_ids as $id):
+             if (get_the_title($id) == 'Home') {
+               echo 'Home';
+             }
+           endforeach; ?></a></li>
         <li>About</li>
       </ol>
 
